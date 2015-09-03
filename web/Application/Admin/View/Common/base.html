@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <include file="Admin@Common/head" />
+<script>
+$(function(){
+    $.getJSON('{:U('Environment/getall')}', function(json) {
+        var html = '';
+        $.each(json['data']['lists'],function(k, v) {
+            html += '<option value="'+v['id']+'"'+(v['id'] == json['data']['current'] ? ' selected="selected"' : '')+'>'+v['name']+'</option>'
+        });
+        $('#current_environment').html(html);
+    });
+})
+function current_environment (ob) {
+    var v = ob.children('option:selected').val();
+    $.ajax({
+        url: '{:U('Environment/current')}',
+        data: {id: v},
+    })
+    .done(function() {
+        location.reload();
+    })
+}
+</script>
+<block name="header"></block>
+</head>
+<body>
+<block name="nav">
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li<?php echo CONTROLLER_NAME == "Index" ? ' class="active"' : ''?>>
+                    <a href="{:U('Admin/Index/index')}">首页</a>
+                </li>
+                <li<?php echo CONTROLLER_NAME == "Item" ? ' class="active"' : ''?>>
+                    <a href="{:U('Admin/Item/index')}">账号管理</a>
+                </li>
+                <li<?php echo CONTROLLER_NAME == "Environment" ? ' class="active"' : ''?>>
+                    <a href="{:U('Admin/Environment/index')}">工作环境</a>
+                </li>
+                <li<?php echo CONTROLLER_NAME == "Service" ? ' class="active"' : ''?>>
+                    <a href="{:U('Admin/Service/index')}">服务管理</a>
+                </li>
+                <li<?php echo CONTROLLER_NAME == "Soft" ? ' class="active"' : ''?>>
+                    <a href="{:U('Admin/Soft/index')}">软件管理</a>
+                </li>
+                <li<?php echo CONTROLLER_NAME == "Type" ? ' class="active"' : ''?>>
+                    <a href="{:U('Admin/Type/index')}">分类管理</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="javascript:;">
+                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span> {$admin_user['username']}
+                    </a>
+                </li>
+                <li>
+                    <select class="form-control" name="sid" id="current_environment" onchange="current_environment($(this));" style="margin-top: 6px;"></select>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+</block>
+<div id="main" class="clearfix container">
+    <block name="main"></block>
+</div>
+<block name="footer"></block>
+</body>
+</html>

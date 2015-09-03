@@ -1,0 +1,8 @@
+D:\net\baiy_login\baiy_login\bin\Debug\baiy_login.exe
+D:\net\baiy_login\baiy_login\bin\Debug\baiy_login.pdb
+D:\net\baiy_login\baiy_login\obj\Debug\baiy_login.csprojResolveAssemblyReference.cache
+D:\net\baiy_login\baiy_login\obj\Debug\baiy_login.form1.resources
+D:\net\baiy_login\baiy_login\obj\Debug\baiy_login.Properties.Resources.resources
+D:\net\baiy_login\baiy_login\obj\Debug\baiy_login.csproj.GenerateResource.Cache
+D:\net\baiy_login\baiy_login\obj\Debug\baiy_login.exe
+D:\net\baiy_login\baiy_login\obj\Debug\baiy_login.pdb

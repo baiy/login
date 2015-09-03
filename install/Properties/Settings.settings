@@ -1,0 +1,18 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="install.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="reg" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Windows Registry Editor Version 5.00
+[HKEY_CLASSES_ROOT\baiy]
+@="URL: baiy Application DevLogin"
+"URL Protocol"=""
+[HKEY_CLASSES_ROOT\baiy\DefaultIcon]
+@="E:\\net\\DevLogin\\DevLogin\\bin\\Debug\\DevLogin.exe,1"
+[HKEY_CLASSES_ROOT\baiy\shell]
+[HKEY_CLASSES_ROOT\baiy\shell\open]
+[HKEY_CLASSES_ROOT\baiy\shell\open\command]
+@="\"E:\\net\\DevLogin\\DevLogin\\bin\\Debug\\DevLogin.exe\" \"%1\""</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

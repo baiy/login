@@ -1,0 +1,80 @@
+<extend name="Admin@Common/base" />
+<block name="main">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-7"> <strong>账号列表</strong>
+                </div>
+                <div class="col-xs-5">
+                    <form class="form-inline form-group-sm text-right" action="{:U()}">
+                        <div class="form-group">
+                            <select class="form-control" name="sid" id="select_sid">
+                                <option value="0">全部服务</option>
+                                <?php foreach ($servicelists as $key =>$value): ?>
+                                <option value="{$value['id']}"<?php echo $input['sid'] == $value['id'] ? 'selected="selected"' : ''?>>{$value['title']}</option>
+                                <?php endforeach ?>
+                            </select>
+                            <select class="form-control" name="tid">
+                                <option value="0">全部分类</option>
+                                <?php foreach ($typelists as $key =>$value): ?>
+                                <option value="{$value['id']}"<?php echo $input['tid'] == $value['id'] ? 'selected="selected"' : ''?>>{$value['title']}</option>
+                                <?php endforeach ?>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-success btn-sm">搜索</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <table class="table table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th width="50">ID</th>
+                    <th>名称</th>
+                    <th>服务/分类</th>
+                    <th>配置信息</th>
+                    <th>添加时间</th>
+                    <th>启动</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($lists as $value): ?>
+                <tr id="item_{$value['id']}" class="item" data-id="{$value['id']}">
+                    <th scope="row">{$value['id']}</th>
+                    <td>{$value['name']}</td>
+                    <td>{$servicelists[$value['sid']]['title']}/{$typelists[$value['tid']]['title']}</td>
+                    <td>
+                    <?php foreach ($value['lists_fields'] as $k => $v): ?>
+                        {$v}:{$value['fields'][$k]}
+                    <?php endforeach ?>
+                    </td>
+                    <td>{:date('Y-m-d',$value['inputtime'])}</td>
+                    <td class="item_run">
+                        <!--  -->
+                    </td>
+                </tr>
+                <?php endforeach ?></tbody>
+        </table>
+    </div>
+<script>
+$(function(){
+    load_run_link();
+})
+function load_run_link(){
+    var ids = '';
+    $(".item").each(function(index, el) {
+        ids += ids == "" ? $(this).attr('data-id') : '|'+$(this).attr('data-id');
+        $.getJSON('{:U('Item/run')}', {ids: ids}, function(json) {
+            $.each(json['data'],function(k, v) {
+                var ob = $("#item_"+k+' .item_run');
+                var html='';
+                $.each(v,function(_k, _v) {
+                    html += '<a href="'+_v['link']+'" class="btn btn-primary btn-xs item_run">'+_v['name']+'</a>'
+                });
+                ob.html(html);
+            });
+        });
+    });
+}
+</script>
+</block>

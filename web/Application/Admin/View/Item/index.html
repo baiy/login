@@ -1,0 +1,46 @@
+<extend name="Admin@Common/base" />
+<block name="main">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-7"> <strong><?php echo empty($service) ? '' : '['.$service['title'].']' ?>账号列表</strong>
+                </div>
+                <div class="col-xs-5">
+                    <form class="form-inline form-group-sm text-right" action="{:U('set')}">
+                        <div class="form-group">
+                            <select class="form-control" name="sid" id="select_sid">
+                                <option value="0">全部服务</option>
+                                <?php foreach ($servicelists as $key =>$value): ?>
+                                <option value="{$value['id']}"<?php echo $service['id'] == $value['id'] ? 'selected="selected"' : ''?>>{$value['title']}</option>
+                                <?php endforeach ?>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-success btn-sm">添加账号</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <table class="table table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>账号名称</th>
+                    <th>添加时间</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($lists as $value): ?>
+                <tr>
+                    <th scope="row">{$value['id']}</th>
+                    <td>{$value['name']}</td>
+                    <td>{:date('Y-m-d H:i',$value['inputtime'])}</td>
+                    <td>
+                        <a href="{:U('set',['id'=>$value['id']])}" class="btn btn-primary btn-xs">编辑</a>
+                        <a href="javascript:;" onclick="del_confirm('{:U('del',['id'=>$value['id']])}')" class="btn btn-primary btn-xs">删除</a>
+                    </td>
+                </tr>
+                <?php endforeach ?></tbody>
+        </table>
+    </div>
+</block>

@@ -1,0 +1,72 @@
+<extend name="Admin@Common/base" />
+<block name="main">
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-xs-7"><strong>{$soft['name']}软件路径</strong></div>
+            <div class="col-xs-5">
+                <form class="form-inline form-group-sm text-right" action="{:U()}" method="post">
+                <input type="hidden" value="{$soft['id']}" name="softid">
+                    <div class="form-group">
+                        <select class="form-control" name="eid">
+                            <option value="0">全部环境</option>
+                            <?php foreach ($environmentlists as $key => $value): ?>
+                                <option value="{$value['id']}">{$value['name']}</option>
+                            <?php endforeach ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="path" id="input_path" value="{$lists['path']}" placeholder="单击选择路径">
+                    </div>
+                    <button type="submit" class="btn btn-success btn-sm">添加路径</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th>环境</th>
+                <th>路径</th>
+                <th>添加时间</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($lists as $value): ?>
+            <tr>
+                <th scope="row">
+                <?php if (empty($value['eid'])): ?>
+                    全部
+                <?php else: ?>
+                    {$environmentlists[$value['eid']]['name']}
+                <?php endif ?>
+                </th>
+                <td>{$value['path']}</td>
+                <td>{:date('Y-m-d H:i',$value['inputtime'])}</td>
+                <td>
+                    <a href="javascript:;" onclick="del_confirm('{:U('pathdel',['id'=>$value['id']])}')" class="btn btn-primary btn-xs">删除</a>
+                </td>
+            </tr>
+            <?php endforeach ?></tbody>
+    </table>
+</div>
+</block>
+<block name="footer">
+<div style="display:none">
+<input type="file" class="form-control" id="file_path">
+</div>
+<script>
+$(function(){
+    $("#input_path").on('click', function(event) {
+        $("#file_path").trigger('click');
+    });
+    $("#file_path").on('change', function(event) {
+        var obj = document.getElementById('file_path') ;
+        if(obj.value){
+            $("#input_path").val(obj.value);
+        }
+    });
+})
+</script>
+</block>

@@ -1,0 +1,10 @@
+Windows Registry Editor Version 5.00
+[HKEY_CLASSES_ROOT\{PROTOCOL}]
+@="URL: {PROTOCOL} Application DevLogin"
+"URL Protocol"=""
+[HKEY_CLASSES_ROOT\{PROTOCOL}\DefaultIcon]
+@="{PATH},1"
+[HKEY_CLASSES_ROOT\{PROTOCOL}\shell]
+[HKEY_CLASSES_ROOT\{PROTOCOL}\shell\open]
+[HKEY_CLASSES_ROOT\{PROTOCOL}\shell\open\command]
+@="\"{PATH}\" \"%1\""

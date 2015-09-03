@@ -1,0 +1,41 @@
+<extend name="Admin@Common/base" />
+<block name="main">
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <?php echo empty($lists) ? '添加账号' : '编辑 [' . $lists['name'] . '] 账号'?>
+    </div>
+    <div class="panel-body">
+        <form action="{:U()}" method="post">
+            <?php if (!empty($lists['id'])): ?>
+            <input type="hidden" name="id" value="{$lists['id']}">
+            <?php endif ?>
+            <input type="hidden" name="sid" value="{$sid}">
+            <div class="form-group">
+                <label>名称</label>
+                <input type="text" class="form-control" name="name" value="{$lists['name']}" required="required">
+            </div>
+            <div class="form-group">
+                <label>分类</label>
+                <select class="form-control" name="tid">
+                    <option value="0">无分类</option>
+                    <?php foreach ($typelists as $key => $value): ?>
+                    <option value="{$value['id']}"<?php echo $value['id'] == $lists['tid'] ? ' selected="selected"' : ''?>>{$value['title']}</option>
+                    <?php endforeach ?>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>所属服务</label>
+                <input type="text" class="form-control" value="{$service['title']}" disabled="disabled">
+            </div>
+            <?php foreach ($fields as $value): ?>
+            <div class="form-group">
+                <label>{$value['name']}</label>
+                <input type="text" class="form-control" name="data[{$value['field']}]" value="<?php echo empty($lists['id']) ? $value['default'] : $lists['item_data'][$value['field']];?>">
+            </div>
+
+            <?php endforeach ?>
+            <button type="submit" class="btn btn-primary">提交</button>
+        </form>
+    </div>
+</div>
+</block>

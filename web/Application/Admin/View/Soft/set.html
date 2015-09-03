@@ -1,0 +1,60 @@
+<extend name="Admin@Common/base" />
+<block name="main">
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <?php echo empty($lists) ? '添加软件' : '编辑 [' . $lists['name'] . '] 软件'?>
+    </div>
+    <div class="panel-body">
+        <form action="{:U()}" method="post">
+            <?php if (!empty($lists['id'])): ?>
+            <input type="hidden" name="id" value="{$lists['id']}">
+            <?php endif ?>
+            <div class="form-group">
+                <label>软件名称</label>
+                <input type="text" class="form-control" name="name" value="{$lists['name']}" required="required">
+            </div>
+            <div class="form-group">
+                <label>服务</label>
+                <select class="form-control" name="sid" id="select_id">
+                    <option value="0">选择服务</option>
+                    <?php foreach ($servicelists as $key => $value): ?>
+                    <option value="{$value['id']}"<?php echo $value['id'] == $lists['sid'] ? ' selected="selected"' : ''?>>{$value['title']}</option>
+                    <?php endforeach ?>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>启动模板</label>
+                <input type="text" class="form-control" name="tpl" value="{$lists['tpl']}">
+                <p class="help-block" id="tpl_value"></p>
+            </div>
+            <button type="submit" class="btn btn-primary">提交</button>
+        </form>
+    </div>
+</div>
+</block>
+<block name="footer">
+
+<script>
+$(function(){
+<?php if ($lists['sid']): ?>
+    load_tpl({$lists['sid']});
+<?php endif ?>
+    $("#select_id").on('change', function(event) {
+        load_tpl($(this).children('option:selected').val())
+    });
+    function load_tpl(v){
+        $("#tpl_value").html('');
+        if(v != "0"){
+            $.getJSON('{:U('Service/gettpl')}', {id: v}, function(json) {
+                var html = '';
+                $.each(json['data'],function(k,val) {
+                    html+= val['name']+":{";
+                    html+= val['field']+"} ";
+                });
+                $("#tpl_value").html(html);
+            });
+        }
+    }
+})
+</script>
+</block>

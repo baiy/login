@@ -1,0 +1,10 @@
+Windows Registry Editor Version 5.00
+[HKEY_CLASSES_ROOT\baiy]
+@="URL: baiy Application DevLogin"
+"URL Protocol"=""
+[HKEY_CLASSES_ROOT\baiy\DefaultIcon]
+@="E:\\net\\DevLogin\\DevLogin\\bin\\Debug\\DevLogin.exe,1"
+[HKEY_CLASSES_ROOT\baiy\shell]
+[HKEY_CLASSES_ROOT\baiy\shell\open]
+[HKEY_CLASSES_ROOT\baiy\shell\open\command]
+@="\"E:\\net\\DevLogin\\DevLogin\\bin\\Debug\\DevLogin.exe\" \"%1\""

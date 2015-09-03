@@ -1,0 +1,17 @@
+D:\net\baiy_login\baiy_login\bin\Debug\baiyLogin.exe
+D:\net\baiy_login\baiy_login\bin\Debug\baiyLogin.pdb
+D:\net\baiy_login\baiy_login\obj\Debug\baiyLogin.form1.resources
+D:\net\baiy_login\baiy_login\obj\Debug\baiyLogin.Properties.Resources.resources
+D:\net\baiy_login\baiy_login\obj\Debug\baiyLogin.csproj.GenerateResource.Cache
+D:\net\baiy_login\baiy_login\obj\Debug\baiyLogin.exe
+D:\net\baiy_login\baiy_login\obj\Debug\baiyLogin.pdb
+D:\net\baiy_login\baiy_login\obj\Debug\baiyLogin.csprojResolveAssemblyReference.cache
+E:\net\baiy_login\baiy_login\bin\Debug\baiyLogin.exe
+E:\net\baiy_login\baiy_login\bin\Debug\baiyLogin.pdb
+E:\net\baiy_login\baiy_login\obj\Debug\baiyLogin.form1.resources
+E:\net\baiy_login\baiy_login\obj\Debug\baiyLogin.Properties.Resources.resources
+E:\net\baiy_login\baiy_login\obj\Debug\baiyLogin.csproj.GenerateResource.Cache
+E:\net\baiy_login\baiy_login\obj\Debug\baiyLogin.exe
+E:\net\baiy_login\baiy_login\obj\Debug\baiyLogin.pdb
+E:\net\DevLogin\old\baiy_login\obj\Debug\baiyLogin.exe
+E:\net\DevLogin\old\baiy_login\obj\Debug\baiyLogin.pdb

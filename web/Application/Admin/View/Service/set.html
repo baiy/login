@@ -1,0 +1,34 @@
+<extend name="Admin@Common/base" />
+<block name="main">
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <?php echo empty($lists) ? '添加服务' : '编辑 [' . $lists['title'] . '] 服务'?>
+    </div>
+    <div class="panel-body">
+        <form action="{:U()}" method="post">
+            <?php if (!empty($lists['id'])): ?>
+            <input type="hidden" name="id" value="{$lists['id']}">
+            <?php endif ?>
+            <div class="form-group">
+                <label>服务名称</label>
+                <input type="text" class="form-control" name="title" value="{$lists['title']}" required="required">
+            </div>
+            <div class="form-group">
+                <label>服务协议</label>
+                <input type="text" class="form-control" name="protocol" value="{$lists['protocol']}" required="required">
+            </div>
+            <div class="form-group">
+                <label>数据字段</label>
+                <textarea class="form-control" rows="8" name="fields">{$lists['fields']}</textarea>
+                <p class="help-block">格式:name|字段名称|默认值  换行分隔</p>
+            </div>
+            <div class="form-group">
+                <label>列表显示字段</label>
+                <input type="text" class="form-control" name="lists_fields" value="{$lists['lists_fields']}">
+                <p class="help-block">name1|name2</p>
+            </div>
+            <button type="submit" class="btn btn-primary">提交</button>
+        </form>
+    </div>
+</div>
+</block>
